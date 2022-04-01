@@ -1,15 +1,13 @@
 import path from 'path';
-import { cwd, chdir } from 'process';
-import { execa } from 'execa';
+import { cwd } from 'process';
 import copy from 'copy-template-dir';
 import alert from 'cli-alerts';
 import chalk from 'chalk';
-import ora from 'ora';
 import questions from './questions.js';
+import executeProcesses from './executeProcesses.js';
 
-const { green: g, yellow: y, dim: d } = chalk;
+const { green: g, dim: d } = chalk;
 const { log } = console;
-const spinner = ora({ text: '' });
 
 export default async function generate() {
   // Gather all the user input into an object
@@ -33,37 +31,15 @@ export default async function generate() {
     }
 
     log();
-    spinner.start(
-      `${y(`DEPENDENCIES`)} installing...\n\n${d('It may take a moment...')}`
-    );
-    chdir(outDirPath);
-    const pkgs = [
-      'meow',
-      'chalk',
-      'cli-alerts',
-      'cli-welcome',
-      'cli-meow-help',
-      'cli-handle-error',
-      'cli-handle-unhandled'
-    ];
 
-    try {
-      await execa('git', ['init']);
-      await execa('npm', ['install', ...pkgs]);
-      await execa('npm', ['install', '-D', 'prettier']);
-      await execa('npm', ['dedupe']);
-      spinner.succeed(`${g(`DEPENDECIES`)} installed!`);
-    } catch (error) {
-      console.error(error);
-      spinner.stop();
-    }
+    await executeProcesses(outDirPath);
 
     alert({
       type: 'success',
       name: 'ALL DONE',
       msg: `\n\n${createdFiles.length} files created in ${d(
         `./${outDir}`
-      )} directory`
+      )} directory`,
     });
   });
 }
