@@ -15,6 +15,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "copy-template-dir": "^1.4.0"
+    "await-to-js": "^3.0.0",
+    "cli-alerts": "^1.2.2",
+    "cli-handle-error": "^4.4.0",
+    "cli-handle-unhandled": "^1.1.1",
+    "cli-welcome": "^2.2.2",
+    "copy-template-dir": "^1.4.0",
+    "enquirer": "^2.3.6"
   }
 }
