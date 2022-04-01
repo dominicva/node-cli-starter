@@ -12,7 +12,9 @@ export default async function ask({ message, hint, initial }) {
       validate(value) {
         return !value ? 'Please input a value.' : true;
       },
-    }).run()
+    })
+      .on('cancel', () => process.exit(0))
+      .run()
   );
 
   handleError('INPUT', err);
