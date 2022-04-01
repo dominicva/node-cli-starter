@@ -7,7 +7,7 @@ const { description, version } = await readFile(filePath, {
   encoding: 'utf-8',
 }).then(json => JSON.parse(json));
 
-export default function init() {
+export default function init({ clear = true }) {
   unhandled();
 
   welcome({
@@ -18,6 +18,6 @@ export default function init() {
     bgColor: '#6cc24a',
     color: '#000000',
     bold: true,
-    clear: true,
+    clear,
   });
 }
