@@ -15,6 +15,7 @@ const { green: g, dim: d } = chalk;
 (async () => {
   init();
 
+  // Gather user input
   const name = await ask({ message: 'CLI name?', hint: '(kebab-case only)' });
   const command = await ask({
     message: 'CLI command?',
@@ -22,41 +23,38 @@ const { green: g, dim: d } = chalk;
   });
   const description = await ask({ message: 'CLI description?' });
   const version = await ask({ message: 'CLI version?', initial: '0.0.1' });
-  // const type = await ask({
-  //   message: 'Module type?',
-  //   initial: 'module',
-  //   hint: 'commonjs or module',
-  // });
   const license = await ask({ message: 'CLI license?', initial: 'UNLICENSED' });
   const authorName = await ask({ message: 'CLI author name?' });
   const authorEmail = await ask({ message: 'CLI author email?' });
   const authorURL = await ask({ message: 'CLI author URL?' });
 
+  // Package up user input
   const vars = {
     name,
     command: command ? command : name,
     description,
     version,
-    // type,
     license,
     authorName,
     authorEmail,
     authorURL,
   };
 
+  // Determine correct file/directory paths/names
   const { name: outDir } = vars;
   const inDirPath = new URL('template', import.meta.url).pathname;
-  const outDirPath = path.join(cwd(), vars.name);
+  const outDirPath = path.join(cwd(), outDir);
 
+  // Copy files in template dir to outDir passing-in user input (vars object)
   copy(inDirPath, outDirPath, vars, (err, createdFiles) => {
     if (err) throw err;
 
     log(d(`\nCreating files in ${g(`./${outDir}`)} directory\n`));
 
-    createdFiles.forEach(filePath => {
+    for (const filePath of createdFiles) {
       const fileName = path.basename(filePath);
       log(`${g('CREATED')} ${fileName}`);
-    });
+    }
 
     alert({
       type: 'success',
