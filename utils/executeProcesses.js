@@ -21,7 +21,7 @@ export default async function executeProcesses(dir) {
   chdir(dir);
 
   try {
-    for await (const command of commands) {
+    for (const command of commands) {
       const base = command.split(' ')[0];
       const body = command.split(' ').slice(1);
       await execa(base, body);
