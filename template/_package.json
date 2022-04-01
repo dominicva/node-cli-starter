@@ -13,6 +13,7 @@
     "format": "prettier --write \"./**/*.{js, json}\""
   },
   "keywords": [],
+  "files": ["index.js", "utils"],
   "author": {
     "name": "{{authorName}}",
     "email": "{{authorEmail}}",

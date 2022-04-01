@@ -48,6 +48,7 @@ export default async function generate() {
     ];
 
     try {
+      await execa('git', ['init']);
       await execa('npm', ['install', ...pkgs]);
       await execa('npm', ['install', '-D', 'prettier']);
       await execa('npm', ['dedupe']);

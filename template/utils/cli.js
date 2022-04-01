@@ -6,31 +6,31 @@ const flags = {
     type: 'boolean',
     default: true,
     alias: 'c',
-    desc: 'Clear the console',
+    desc: 'Clear the console'
   },
   debug: {
     type: 'boolean',
     default: false,
     alias: 'd',
-    desc: 'Print debug info',
+    desc: 'Print debug info'
   },
   version: {
     type: 'boolean',
     alias: 'v',
-    desc: 'Print CLI version',
-  },
+    desc: 'Print CLI version'
+  }
 };
 
 const commands = {
   help: {
-    descripton: 'Print help info',
-  },
+    descripton: 'Print help info'
+  }
 };
 
 const helpText = meowHelp({
   name: '{{command}}',
   flags,
-  commands,
+  commands
 });
 
 const options = {
@@ -38,6 +38,7 @@ const options = {
   description: false,
   hardRejection: false,
   flags,
+  importMeta: import.meta
 };
 
 const cli = meow(helpText, options);
