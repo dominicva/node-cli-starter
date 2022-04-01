@@ -9,6 +9,9 @@ export default async function ask({ message, hint, initial }) {
       message,
       hint,
       initial,
+      validate(value) {
+        return !value ? 'Please input a value.' : true;
+      },
     }).run()
   );
 
