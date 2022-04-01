@@ -8,6 +8,6 @@
 ## Run on your local machine
 
 - get the code
-- run: &nbsp; `npm install`
-- at the project root run &nbsp; `npm link`
-- you should then be able to run &nbsp; `ncli` and follow the prompts to generate your new project in your current working directory
+- run: `npm install`
+- at the project root run `npm link`
+- you should then be able to run `ncli` and follow the prompts to generate your new project in your current working directory
