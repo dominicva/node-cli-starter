@@ -1,0 +1,16 @@
+{
+  "name": "cli-img",
+  "version": "0.0.1",
+  "description": "CLI to resize and optimize images",
+  "bin": {
+    "cli-img": "index.js"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
