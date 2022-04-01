@@ -32,6 +32,7 @@ export default async function generate() {
 
     log();
 
+    // git init and install dependencies
     await executeProcesses(outDirPath);
 
     alert({
